@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <h2>QuizMaker</h2>
+        <div id="nav-links">
+            <button onclick="showPage('home')">Home</button>
+            <button id="nav-login" onclick="showPage('auth')">Login / Register</button>
+            <button id="nav-logout" onclick="logout()" style="display: none;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <h1>Welcome to Online Quiz Maker</h1>
+            <p>Create your own quizzes or test your knowledge by taking existing ones.</p>
+            <div class="home-actions">
+                <button onclick="goToCreate()">Create a Quiz</button>
+                <button onclick="goToList()">Take a Quiz</button>
+            </div>
+        </div>
+
+        <div id="auth" class="page">
+            <div class="auth-box">
+                <h2 id="auth-title">Login</h2>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button onclick="handleAuth()" id="auth-btn">Login</button>
+                <p id="auth-toggle" onclick="toggleAuth()">Need an account? Register here.</p>
+            </div>
+        </div>
+
+        <div id="create-quiz" class="page">
+            <h2>Create New Quiz</h2>
+            <input type="text" id="quiz-title" placeholder="Enter Quiz Title">
+
+            <div class="question-builder">
+                <input type="text" id="q-text" placeholder="Question">
+                <input type="text" id="opt-a" placeholder="Option A">
+                <input type="text" id="opt-b" placeholder="Option B">
+                <input type="text" id="opt-c" placeholder="Option C">
+                <input type="text" id="opt-d" placeholder="Option D">
+                <select id="correct-opt">
+                    <option value="">Select Correct Option</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+                <button onclick="addQuestion()">Add Question</button>
+            </div>
+
+            <ul id="temp-questions"></ul>
+            <button onclick="saveQuiz()" class="save-btn">Save Entire Quiz</button>
+        </div>
+
+        <div id="quiz-list" class="page">
+            <h2>Available Quizzes</h2>
+            <div id="quizzes-container"></div>
+        </div>
+
+        <div id="take-quiz" class="page quiz-ui-mode">
+            <div class="deco deco-plant">🪴</div>
+            <div class="deco deco-shoe">👟</div>
+            <div class="deco deco-orange">🍊</div>
+            <div class="deco deco-banana">🍌</div>
+            <div class="deco deco-bike">🚲</div>
+            <div class="deco deco-lotus">🪷</div>
+
+            <div class="quiz-ui-container">
+                <h2 id="active-quiz-title" style="text-align: center; color: #0c6b75; margin-bottom: 15px;"></h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="quiz-progress-bar"></div>
+                </div>
+                <p id="q-tracker" class="tracker-text">Question 1/10</p>
+
+                <h3 id="question-display" class="quiz-question-text"></h3>
+
+                <div class="options-container" id="options-display">
+                    </div>
+
+                <button id="next-btn" class="ui-next-btn" onclick="nextQuestion()" style="display: none;">Next</button>
+            </div>
+        </div>
+        <div id="results" class="page">
+            <h2>Quiz Results</h2>
+            <h1 id="score-display"></h1>
+            <div id="review-container"></div>
+            <button onclick="showPage('home')">Back to Home</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
